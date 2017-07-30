@@ -1,4 +1,5 @@
 #!/bin/bash
+# Define version.
 DOCKER_VERSION=1.12.6
 
 # Add repository.
