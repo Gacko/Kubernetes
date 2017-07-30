@@ -6,4 +6,4 @@ systemctl disable docker
 
 yum install --assumeyes docker-$DOCKER_VERSION
 
-rm -f /etc/yum.repos.d/docker.repo
+rm -rf /etc/yum.repos.d/docker.repo /var/lib/docker
