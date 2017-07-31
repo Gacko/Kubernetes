@@ -12,3 +12,9 @@ yum autoremove --assumeyes
 
 # Remove repository.
 rm -f /etc/yum.repos.d/kubernetes.repo
+
+# Disable bridge-nf-call-iptables.
+rm -f /etc/sysctl.d/90-bridge-nf-call-iptables.conf
+
+# Reload sysctl.
+sysctl --system

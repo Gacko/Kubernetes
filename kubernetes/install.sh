@@ -2,6 +2,12 @@
 # Define version.
 KUBERNETES_VERSION=1.6.7
 
+# Enable bridge-nf-call-iptables.
+echo "net.bridge.bridge-nf-call-iptables = 1" > /etc/sysctl.d/90-bridge-nf-call-iptables.conf
+
+# Reload sysctl.
+sysctl --system
+
 # Add repository.
 cat << 'EOF' > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
