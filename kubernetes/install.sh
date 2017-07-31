@@ -1,6 +1,6 @@
 #!/bin/bash
 # Define version.
-KUBERNETES_VERSION=1.6.6
+KUBERNETES_VERSION=1.6.7
 
 # Add repository.
 cat << 'EOF' > /etc/yum.repos.d/kubernetes.repo
