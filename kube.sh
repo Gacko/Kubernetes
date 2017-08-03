@@ -1,6 +1,6 @@
 #!/bin/bash
-TASK=$1
-FILE=$2
+FILE=$1
+TASK=$2
 
 shift ; shift
 
