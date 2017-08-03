@@ -7,7 +7,7 @@ systemctl disable kubelet
 rm -f /etc/bash_completion.d/kubectl
 
 # Remove packages.
-yum autoremove --assumeyes kubelet kubeadm kubectl bash-completion
+yum autoremove --assumeyes kubelet kubeadm kubectl
 yum autoremove --assumeyes
 
 # Remove repository.

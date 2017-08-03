@@ -19,7 +19,7 @@ repo_gpgcheck=1
 EOF
 
 # Install packages.
-yum install --assumeyes kubelet-$KUBERNETES_VERSION kubeadm-$KUBERNETES_VERSION kubectl-$KUBERNETES_VERSION bash-completion
+yum install --assumeyes kubelet-$KUBERNETES_VERSION kubeadm-$KUBERNETES_VERSION kubectl-$KUBERNETES_VERSION
 
 # Install bash completion.
 kubectl completion bash > /etc/bash_completion.d/kubectl
