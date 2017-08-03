@@ -1,4 +1,10 @@
 #!/bin/bash
+# Check if master.yml exists.
+if [ ! -f `dirname $0`/master.yml ]; then
+  echo "master.yml not found. Copy and configure from master-template.yml."
+  exit 1
+fi
+
 # Init cluster.
 kubeadm init --config `dirname $0`/master.yml
 
