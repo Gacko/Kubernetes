@@ -16,7 +16,9 @@ yum install --assumeyes docker-$DOCKER_VERSION
 # Check for existence of docker.service.d.
 if [ -d `dirname $0`/docker.service.d ]
 then
-  # Install drop-ins.
+  # Remove old drop-ins.
+  rm -rf /etc/systemd/system/docker.service.d
+  # Install new drop-ins.
   cp -r `dirname $0`/docker.service.d /etc/systemd/system/docker.service.d
   # Reload daemons.
   systemctl daemon-reload
