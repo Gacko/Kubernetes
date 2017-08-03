@@ -14,7 +14,7 @@ EOF
 yum install --assumeyes docker-$DOCKER_VERSION
 
 # Check for existence of docker.service.d.
-if [ -f `dirname $0`/docker.service.d ]
+if [ -d `dirname $0`/docker.service.d ]
 then
   # Install drop-ins.
   cp -r `dirname $0`/docker.service.d /etc/systemd/system/docker.service.d
