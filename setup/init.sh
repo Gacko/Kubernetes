@@ -1,5 +1,5 @@
 #!/bin/bash
-# Check if master.yml exists.
+# Check for existence of master.yml.
 if [ ! -f `dirname $0`/master.yml ]; then
   echo "master.yml not found. Copy and configure from master-template.yml."
   exit 1
