@@ -8,4 +8,4 @@ yum autoremove --assumeyes docker
 yum autoremove --assumeyes
 
 # Remove repository and files.
-rm -rf /etc/yum.repos.d/docker.repo /var/lib/docker
+rm -rf /etc/yum.repos.d/docker.repo /etc/systemd/system/docker.service.d /var/lib/docker
