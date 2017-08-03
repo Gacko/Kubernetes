@@ -2,9 +2,9 @@ apiVersion: kubeadm.k8s.io/v1alpha1
 kind: MasterConfiguration
 kubernetesVersion: v1.6.7
 api:
-  advertiseAddress: 192.168.1.10
+  advertiseAddress: kubernetes.local
 networking:
   podSubnet: 10.1.0.0/16
   serviceSubnet: 10.2.0.0/16
 apiServerCertSANs:
-- kube-master.local
+- kubernetes.local

@@ -1,3 +1,4 @@
 setup/master.yml
 setup/worker.yml
+setup/flannel/flannel-configmap.yml
 docker/docker.service.d
