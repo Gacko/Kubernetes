@@ -1,0 +1,24 @@
+[Unit]
+Description=etcd
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run \
+  --rm \
+  --net=host \
+  --volume /var/lib/etcd:/var/lib/etcd:Z \
+  quay.io/coreos/etcd:VERSION /usr/local/bin/etcd \
+  --data-dir=/var/lib/etcd \
+  --name HOSTNAME \
+  --listen-peer-urls http://HOSTNAME:2380 \
+  --initial-advertise-peer-urls http://HOSTNAME:2380 \
+  --listen-client-urls http://HOSTNAME:2379 \
+  --advertise-client-urls http://HOSTNAME:2379 \
+  --initial-cluster CLUSTER \
+  --initial-cluster-token TOKEN
+TimeoutStartSec=0
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

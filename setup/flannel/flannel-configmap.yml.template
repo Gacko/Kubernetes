@@ -17,7 +17,7 @@ data:
     }
   net-conf.json: |
     {
-      "Network": "10.1.0.0/16",
+      "Network": "POD_CIDR",
       "Backend": {
         "Type": "vxlan"
       }

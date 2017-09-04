@@ -1,4 +1,11 @@
-setup/master.yml
-setup/worker.yml
-setup/flannel/flannel-configmap.yml
+# Docker
 docker/docker.service.d
+
+# etcd
+etcd/etcd.env
+
+# Setup
+setup/setup.env
+
+# IDE
+.idea/
