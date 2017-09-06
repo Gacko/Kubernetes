@@ -9,14 +9,6 @@ then
   exit 1
 fi
 
-# Add repository.
-cat << 'EOF' > /etc/yum.repos.d/docker.repo
-[docker]
-name=Docker
-baseurl=https://download.docker.com/linux/centos/7/$basearch/stable
-gpgkey=https://download.docker.com/linux/centos/gpg
-EOF
-
 # Install package.
 yum install --assumeyes "docker-$VERSION"
 

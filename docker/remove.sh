@@ -16,8 +16,5 @@ yum versionlock delete docker
 yum autoremove --assumeyes docker
 yum autoremove --assumeyes
 
-# Remove repository
-rm -f /etc/yum.repos.d/docker.repo
-
 # Remove config and data.
 rm -rf /etc/docker /var/lib/docker/* /var/lib/systemd/timers/stamp-docker-cleanup.timer /usr/libexec/docker
