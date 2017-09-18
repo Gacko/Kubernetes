@@ -15,12 +15,12 @@ $(dirname "$0")/dns.sh "$SERVICE_CIDR"
 # Check for existence of kubelet.conf.
 if [ ! -f "/etc/kubernetes/kubelet.conf" ]
 then
-  echo "kubelet.conf not found. Copy /etc/kubernetes from first node."
+  echo "kubelet.conf not found. Transfer /etc/kubernetes from first node."
   exit 1
 fi
 
 # Replace hostname.
-sed -i.bak "s/system:node:.*/system:node:$HOSTNAME/g" /etc/kubernetes/kubelet.conf
+sed -i.bak "s~system:node:.*~system:node:$HOSTNAME~g" /etc/kubernetes/kubelet.conf
 
 # Remove backup.
 rm -f /etc/kubernetes/kubelet.conf.bak
