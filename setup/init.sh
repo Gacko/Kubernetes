@@ -1,13 +1,13 @@
 #!/bin/bash
 # Check for existence of setup.env.
-if [ ! -f "$(dirname $0)/setup.env" ]
+if [ ! -f "$(dirname "$0")/setup.env" ]
 then
   echo "setup.env not found. Copy and configure from setup.env.template."
   exit 1
 fi
 
 # Source environment.
-source "$(dirname $0)/setup.env"
+source "$(dirname "$0")/setup.env"
 
 # Override cluster DNS.
 $(dirname "$0")/dns.sh "$SERVICE_CIDR"
@@ -29,7 +29,7 @@ done
 ETCD_CLUSTER="[ $ETCD_CLUSTER ]"
 
 # Define master file.
-MASTER="$(dirname $0)/master.yml"
+MASTER="$(dirname "$0")/master.yml"
 
 # Copy master template.
 cp "$MASTER.template" "$MASTER"
@@ -52,7 +52,7 @@ rm -f "$MASTER" "$MASTER.bak"
 $(dirname "$0")/config.sh
 
 # Define flannel file.
-FLANNEL="$(dirname $0)/flannel/flannel-configmap.yml"
+FLANNEL="$(dirname "$0")/flannel/flannel-configmap.yml"
 
 # Copy flannel template.
 cp "$FLANNEL.template" "$FLANNEL"
@@ -61,9 +61,9 @@ cp "$FLANNEL.template" "$FLANNEL"
 sed -i.bak "s~POD_CIDR~$POD_CIDR~g" "$FLANNEL"
 
 # Apply flannel.
-kubectl apply -f "$(dirname $0)/flannel/flannel-rbac.yml"
+kubectl apply -f "$(dirname "$0")/flannel/flannel-rbac.yml"
 kubectl apply -f "$FLANNEL"
-kubectl apply -f "$(dirname $0)/flannel/flannel.yml"
+kubectl apply -f "$(dirname "$0")/flannel/flannel.yml"
 
 # Remove flannel files.
 rm -f "$FLANNEL" "$FLANNEL.bak"

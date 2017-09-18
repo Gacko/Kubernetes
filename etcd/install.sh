@@ -3,14 +3,14 @@
 VERSION="v3.0.17"
 
 # Check for existence of etcd.env.
-if [ ! -f "$(dirname $0)/etcd.env" ]
+if [ ! -f "$(dirname "$0")/etcd.env" ]
 then
   echo "etcd.env not found. Copy and configure from etcd.env.template."
   exit 1
 fi
 
 # Source environment.
-source "$(dirname $0)/etcd.env"
+source "$(dirname "$0")/etcd.env"
 
 # Build cluster string.
 CLUSTER=""
@@ -25,7 +25,7 @@ do
 done
 
 # Define service file.
-SERVICE="$(dirname $0)/etcd.service"
+SERVICE="$(dirname "$0")/etcd.service"
 
 # Copy service template.
 cp "$SERVICE.template" "$SERVICE"
