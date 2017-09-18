@@ -6,11 +6,20 @@ SERVICE_CIDR="$1"
 SERVICE_IP="${SERVICE_CIDR%\/*}"
 CLUSTER_DNS="${SERVICE_IP%\.*}.$((${SERVICE_IP##*\.}+10))"
 
-# Override cluster DNS.
-cat << EOF > /etc/systemd/system/kubelet.service.d/90-cluster-dns.conf
-[Service]
-Environment="KUBELET_DNS_ARGS=--cluster-dns=$CLUSTER_DNS --cluster-domain=cluster.local"
-EOF
+# Define drop-in file.
+DROPIN="$(dirname "$0")/cluster-dns.conf"
+
+# Copy drop-in template.
+cp "$DROPIN.template" "$DROPIN"
+
+# Replace variables.
+sed -i.bak "s~CLUSTER_DNS~$CLUSTER_DNS~g" "$DROPIN"
+
+# Install drop-in.
+cp "$DROPIN" /etc/systemd/system/kubelet.service.d/90-cluster-dns.conf
 
 # Reload daemons.
 systemctl daemon-reload
+
+# Remove drop-in files.
+rm -f "$DROPIN" "$DROPIN.bak"
