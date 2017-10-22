@@ -10,10 +10,10 @@ then
 fi
 
 # Install package.
-yum install --assumeyes "docker-$VERSION"
+yum install --assumeyes "docker-$VERSION" "docker-client-$VERSION" "docker-common-$VERSION"
 
 # Add version lock.
-yum versionlock add "docker-$VERSION"
+yum versionlock add "docker-$VERSION" "docker-client-$VERSION" "docker-common-$VERSION"
 
 # Remove old drop-ins.
 rm -rf /etc/systemd/system/docker.service.d
