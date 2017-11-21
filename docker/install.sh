@@ -2,13 +2,6 @@
 # Define version.
 VERSION="1.12.6"
 
-# Check for existence of docker.service.d.
-if [ ! -d "$(dirname "$0")/docker.service.d" ]
-then
-  echo "docker.service.d not found. Copy and configure from docker.service.d.template."
-  exit 1
-fi
-
 # Install package.
 yum install --assumeyes "docker-$VERSION" "docker-client-$VERSION" "docker-common-$VERSION"
 
@@ -18,8 +11,12 @@ yum versionlock add "docker-$VERSION" "docker-client-$VERSION" "docker-common-$V
 # Remove old drop-ins.
 rm -rf /etc/systemd/system/docker.service.d
 
-# Copy new drop-ins.
-cp -r "$(dirname "$0")/docker.service.d" /etc/systemd/system/docker.service.d
+# Check for existence of docker.service.d.
+if [ -d "$(dirname "$0")/docker.service.d" ]
+then
+  # Copy new drop-ins.
+  cp -r "$(dirname "$0")/docker.service.d" /etc/systemd/system/docker.service.d
+fi
 
 # Reload daemons.
 systemctl daemon-reload
