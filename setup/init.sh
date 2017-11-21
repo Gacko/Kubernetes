@@ -63,7 +63,7 @@ sed -i.bak "s~POD_CIDR~$POD_CIDR~g" "$FLANNEL"
 # Apply flannel.
 kubectl apply -f "$(dirname "$0")/flannel/flannel-rbac.yml"
 kubectl apply -f "$FLANNEL"
-kubectl apply -f "$(dirname "$0")/flannel/flannel.yml"
+kubectl apply -f "$(dirname "$0")/flannel/flannel-daemonset.yml"
 
 # Remove flannel files.
 rm -f "$FLANNEL" "$FLANNEL.bak"
