@@ -54,6 +54,20 @@ To remove etcd, run:
 ./kube.sh etcd remove etcd-1 ...
 ```
 
+## Kubernetes
+
+Kubernetes packages need to be installed on all nodes:
+
+```
+./kube.sh kubernetes install node-1 ...
+```
+
+To remove Kubernetes packages, run:
+
+```
+./kube.sh kubernetes remove node-1 ...
+```
+
 ## Setup
 
 Copy `setup.env.template` to `setup.env` inside of `setup` and configure it according to your needs.
