@@ -12,28 +12,58 @@ source "$(dirname "$0")/setup.env"
 # Override cluster DNS.
 $(dirname "$0")/dns.sh "$SERVICE_CIDR"
 
-# Check for existence of kubelet.conf.
-if [ ! -f "/etc/kubernetes/kubelet.conf" ]
-then
-  echo "kubelet.conf not found. Transfer /etc/kubernetes from first node."
-  exit 1
-fi
+# Lookup API server IP.
+APISERVER_IP="$(getent hosts "$APISERVER_FQDN" | awk '{print $1}')"
 
-# Replace hostname.
-sed -i.bak "s~system:node:.*~system:node:$HOSTNAME~g" /etc/kubernetes/kubelet.conf
+# Build etcd cluster string.
+ETCD_CLUSTER=""
+for node in $ETCD_NODES
+do
+  if [ -z "$ETCD_CLUSTER" ]
+  then
+    ETCD_CLUSTER="\"http://$node:2379\""
+  else
+    ETCD_CLUSTER="$ETCD_CLUSTER, \"http://$node:2379\""
+  fi
+done
+ETCD_CLUSTER="[ $ETCD_CLUSTER ]"
 
-# Remove backup.
-rm -f /etc/kubernetes/kubelet.conf.bak
+# Define master file.
+MASTER="$(dirname "$0")/master.yml"
 
-# Start service.
-systemctl start kubelet
+# Copy master template.
+cp "$MASTER.template" "$MASTER"
 
-# Wait for startup.
-sleep 10
+# Replace variables.
+sed -i.bak "s~APISERVER_FQDN~$APISERVER_FQDN~g" "$MASTER"
+sed -i.bak "s~APISERVER_IP~$APISERVER_IP~g" "$MASTER"
+sed -i.bak "s~ETCD_CLUSTER~$ETCD_CLUSTER~g" "$MASTER"
+sed -i.bak "s~TOKEN~$TOKEN~g" "$MASTER"
+sed -i.bak "s~POD_CIDR~$POD_CIDR~g" "$MASTER"
+sed -i.bak "s~SERVICE_CIDR~$SERVICE_CIDR~g" "$MASTER"
+
+# Init cluster.
+kubeadm init --config "$MASTER"
+
+# Remove master files.
+rm -f "$MASTER" "$MASTER.bak"
 
 # Copy config.
 $(dirname "$0")/config.sh
 
-# Taint node.
-kubectl taint node "$HOSTNAME" node-role.kubernetes.io/master=:NoSchedule
-kubectl label node "$HOSTNAME" node-role.kubernetes.io/master=
+# Define flannel file.
+FLANNEL="$(dirname "$0")/flannel/flannel-configmap.yml"
+
+# Copy flannel template.
+cp "$FLANNEL.template" "$FLANNEL"
+
+# Replace variables.
+sed -i.bak "s~POD_CIDR~$POD_CIDR~g" "$FLANNEL"
+
+# Apply flannel.
+kubectl apply -f "$(dirname "$0")/flannel/flannel-rbac.yml"
+kubectl apply -f "$FLANNEL"
+kubectl apply -f "$(dirname "$0")/flannel/flannel-daemonset.yml"
+
+# Remove flannel files.
+rm -f "$FLANNEL" "$FLANNEL.bak"

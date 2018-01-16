@@ -6,8 +6,10 @@ shift
 
 # Remove existing configuration in /tmp.
 rm -rf /tmp/kubernetes
+# Create empty configuration in /tmp.
+mkdir /tmp/kubernetes
 # Download configuration from first master.
-scp -r "$MASTER:/etc/kubernetes" /tmp/kubernetes
+scp -r "$MASTER:/etc/kubernetes/pki" /tmp/kubernetes/pki
 
 # Transfer configuration to other masters.
 for host in $@

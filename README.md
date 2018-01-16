@@ -75,7 +75,7 @@ Copy `setup.env.template` to `setup.env` inside of `setup` and configure it acco
 Initialize your cluster on the first master:
 
 ```
-./kube.sh setup init master-1
+./kube.sh setup master master-1
 ```
 
 Transfer configuration files from first master to other masters:
