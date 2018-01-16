@@ -4,6 +4,7 @@ After=docker.service
 Requires=docker.service
 
 [Service]
+SyslogIdentifier=etcd
 ExecStart=/usr/bin/docker run \
   --rm \
   --net=host \
