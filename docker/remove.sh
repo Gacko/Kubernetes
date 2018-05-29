@@ -9,9 +9,6 @@ rm -rf /etc/systemd/system/docker.service.d
 # Reload daemons.
 systemctl daemon-reload
 
-# Delete version lock.
-yum versionlock delete docker docker-client docker-common
-
 # Remove package.
 yum autoremove --assumeyes docker docker-client docker-common
 yum autoremove --assumeyes

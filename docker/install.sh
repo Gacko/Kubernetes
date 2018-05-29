@@ -1,12 +1,6 @@
 #!/bin/bash
-# Define version.
-VERSION="1.12.6"
-
 # Install package.
-yum install --assumeyes "docker-$VERSION" "docker-client-$VERSION" "docker-common-$VERSION"
-
-# Add version lock.
-yum versionlock add "docker-$VERSION" "docker-client-$VERSION" "docker-common-$VERSION"
+yum install --assumeyes docker docker-client docker-common
 
 # Remove old drop-ins.
 rm -rf /etc/systemd/system/docker.service.d
