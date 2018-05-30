@@ -14,4 +14,4 @@ yum autoremove --assumeyes docker docker-client docker-common
 yum autoremove --assumeyes
 
 # Remove config and data.
-rm -rf /etc/docker /var/lib/docker/* /var/lib/systemd/timers/stamp-docker-cleanup.timer /usr/libexec/docker
+rm -rf /etc/sysconfig/docker* /etc/docker /var/lib/systemd/timers/stamp-docker-cleanup.timer /var/lib/docker/*
