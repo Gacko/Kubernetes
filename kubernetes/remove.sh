@@ -29,4 +29,4 @@ sysctl --system
 rm -f /etc/yum.repos.d/kubernetes.repo
 
 # Remove config and data.
-rm -rf /etc/kubernetes /var/lib/kubelet /var/lib/dockershim
+rm -rf /etc/kubernetes /usr/libexec/kubernetes /var/lib/kubelet /var/lib/dockershim
