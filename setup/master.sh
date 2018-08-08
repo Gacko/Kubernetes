@@ -45,8 +45,8 @@ sed -i.bak "s~SERVICE_CIDR~$SERVICE_CIDR~g" "$MASTER"
 # Init cluster.
 kubeadm init --config "$MASTER"
 
-# Remove master files.
-rm -f "$MASTER" "$MASTER.bak"
+# Remove master backup.
+rm -f "$MASTER.bak"
 
 # Copy config.
 $(dirname "$0")/config.sh
