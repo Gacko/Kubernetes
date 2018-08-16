@@ -9,9 +9,5 @@ token: TOKEN
 networking:
   podSubnet: POD_CIDR
   serviceSubnet: SERVICE_CIDR
-controllerManagerExtraArgs:
-  master: https://APISERVER_FQDN:6443
-schedulerExtraArgs:
-  master: https://APISERVER_FQDN:6443
 apiServerCertSANs:
 - APISERVER_FQDN
