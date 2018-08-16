@@ -20,4 +20,4 @@ fi
 $(dirname "$0")/dns.sh "$SERVICE_CIDR"
 
 # Join cluster.
-kubeadm join --token "$TOKEN" "$APISERVER_FQDN:6443" --discovery-token-ca-cert-hash "$CA_CERT_HASH"
+kubeadm join --ignore-preflight-errors=cri --token "$TOKEN" "$APISERVER_FQDN:6443" --discovery-token-ca-cert-hash "$CA_CERT_HASH"

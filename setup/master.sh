@@ -43,7 +43,7 @@ sed -i.bak "s~POD_CIDR~$POD_CIDR~g" "$MASTER"
 sed -i.bak "s~SERVICE_CIDR~$SERVICE_CIDR~g" "$MASTER"
 
 # Init cluster.
-kubeadm init --config "$MASTER"
+kubeadm init --ignore-preflight-errors=cri --config "$MASTER"
 
 # Remove master backup.
 rm -f "$MASTER.bak"
