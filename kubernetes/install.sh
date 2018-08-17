@@ -12,10 +12,10 @@ cp "$(dirname "$0")/bridge-nf-call-iptables.conf" /etc/sysctl.d/90-bridge-nf-cal
 sysctl --system
 
 # Install packages.
-yum install --assumeyes "kubelet-$VERSION" "kubeadm-$VERSION" "kubectl-$VERSION" kubernetes-cni-0.6.0
+yum install --assumeyes "kubelet-$VERSION" "kubeadm-$VERSION" "kubectl-$VERSION"
 
 # Add version locks.
-yum versionlock add "kubelet-$VERSION" "kubeadm-$VERSION" "kubectl-$VERSION" kubernetes-cni-0.6.0
+yum versionlock add "kubelet-$VERSION" "kubeadm-$VERSION" "kubectl-$VERSION"
 
 # Install bash completion.
 kubectl completion bash > /etc/bash_completion.d/kubectl

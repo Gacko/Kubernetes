@@ -7,10 +7,10 @@ systemctl disable kubelet
 rm -f /etc/bash_completion.d/kubectl
 
 # Delete version locks.
-yum versionlock delete kubelet kubeadm kubectl kubernetes-cni
+yum versionlock delete kubelet kubeadm kubectl
 
 # Remove packages.
-yum autoremove --assumeyes kubelet kubeadm kubectl kubernetes-cni
+yum autoremove --assumeyes kubelet kubeadm kubectl
 yum autoremove --assumeyes
 
 # Remove drop-ins.
