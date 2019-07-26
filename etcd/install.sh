@@ -1,6 +1,6 @@
 #!/bin/bash
 # Define version.
-VERSION="v3.0.17"
+VERSION="v3.2.26"
 
 # Check for existence of etcd.env.
 if [ ! -f "$(dirname "$0")/etcd.env" ]

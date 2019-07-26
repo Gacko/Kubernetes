@@ -1,6 +1,6 @@
 #!/bin/bash
 # Define version.
-VERSION="1.9.10"
+VERSION="1.14.4"
 
 # Add repository.
 cp "$(dirname "$0")/kubernetes.repo" /etc/yum.repos.d/kubernetes.repo
