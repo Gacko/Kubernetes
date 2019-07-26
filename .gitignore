@@ -1,11 +1,5 @@
 # Docker
 docker/docker.service.d
 
-# etcd
-etcd/etcd.env
-
 # Setup
 setup/setup.env
-
-# IDE
-.idea/

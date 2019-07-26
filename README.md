@@ -38,22 +38,6 @@ To remove Docker, run:
 ./kube.sh docker remove node-1 ...
 ```
 
-## etcd
-
-Copy `etcd.env.template` to `etcd.env` inside of `etcd` and configure it according to your needs.
-
-etcd can be installed on dedicated nodes or master nodes:
-
-```
-./kube.sh etcd install etcd-1 ...
-```
-
-To remove etcd, run:
-
-```
-./kube.sh etcd remove etcd-1 ...
-```
-
 ## Kubernetes
 
 Kubernetes packages need to be installed on all nodes:
@@ -77,7 +61,7 @@ CA certificate hash will be generated during master setup.
 Initialize your cluster on the first master:
 
 ```
-./kube.sh setup master master-1
+./kube.sh setup init master-1
 ```
 
 Transfer configuration files from first master to other masters:
