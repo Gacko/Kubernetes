@@ -9,9 +9,6 @@ fi
 # Source environment.
 source "$(dirname "$0")/setup.env"
 
-# Lookup API server IP.
-APISERVER_IP="$(getent hosts "$APISERVER_FQDN" | awk '{print $1}')"
-
 # Build etcd cluster string.
 ETCD_CLUSTER=""
 for node in $ETCD_NODES
@@ -33,7 +30,6 @@ cp "$MASTER.template" "$MASTER"
 
 # Replace variables.
 sed -i.bak "s~APISERVER_FQDN~$APISERVER_FQDN~g" "$MASTER"
-sed -i.bak "s~APISERVER_IP~$APISERVER_IP~g" "$MASTER"
 sed -i.bak "s~ETCD_CLUSTER~$ETCD_CLUSTER~g" "$MASTER"
 sed -i.bak "s~TOKEN~$TOKEN~g" "$MASTER"
 sed -i.bak "s~POD_CIDR~$POD_CIDR~g" "$MASTER"
