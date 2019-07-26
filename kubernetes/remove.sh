@@ -13,12 +13,6 @@ yum versionlock delete kubelet kubeadm kubectl
 yum autoremove --assumeyes kubelet kubeadm kubectl
 yum autoremove --assumeyes
 
-# Remove drop-ins.
-rm -rf /etc/systemd/system/kubelet.service.d
-
-# Reload daemons.
-systemctl daemon-reload
-
 # Remove repository.
 rm -f /etc/yum.repos.d/kubernetes.repo
 
