@@ -9,9 +9,6 @@ fi
 # Source environment.
 source "$(dirname "$0")/setup.env"
 
-# Override cluster DNS.
-$(dirname "$0")/dns.sh "$SERVICE_CIDR"
-
 # Lookup API server IP.
 APISERVER_IP="$(getent hosts "$APISERVER_FQDN" | awk '{print $1}')"
 
@@ -43,7 +40,7 @@ sed -i.bak "s~POD_CIDR~$POD_CIDR~g" "$MASTER"
 sed -i.bak "s~SERVICE_CIDR~$SERVICE_CIDR~g" "$MASTER"
 
 # Init cluster.
-kubeadm init --ignore-preflight-errors=cri --config "$MASTER"
+kubeadm init --config "$MASTER"
 
 # Remove master backup.
 rm -f "$MASTER.bak"

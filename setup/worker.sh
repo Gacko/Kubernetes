@@ -16,8 +16,5 @@ then
   exit 1
 fi
 
-# Override cluster DNS.
-$(dirname "$0")/dns.sh "$SERVICE_CIDR"
-
 # Join cluster.
 kubeadm join --token "$TOKEN" "$APISERVER_FQDN:6443" --discovery-token-ca-cert-hash "$CA_CERT_HASH"

@@ -1,13 +1,19 @@
-apiVersion: kubeadm.k8s.io/v1alpha1
-kind: MasterConfiguration
-kubernetesVersion: v1.14.4
-api:
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: InitConfiguration
+localAPIEndpoint:
   advertiseAddress: APISERVER_IP
+bootstrapTokens:
+- token: TOKEN
+---
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: ClusterConfiguration
+kubernetesVersion: v1.14.4
 etcd:
-  endpoints: ETCD_CLUSTER
-token: TOKEN
+  external:
+    endpoints: ETCD_CLUSTER
 networking:
   podSubnet: POD_CIDR
   serviceSubnet: SERVICE_CIDR
-apiServerCertSANs:
-- APISERVER_FQDN
+apiServer:
+  certSANs:
+  - APISERVER_FQDN

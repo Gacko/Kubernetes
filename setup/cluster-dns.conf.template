@@ -1,2 +1,0 @@
-[Service]
-Environment="KUBELET_DNS_ARGS=--cluster-dns=CLUSTER_DNS --cluster-domain=cluster.local"
