@@ -19,12 +19,6 @@ rm -rf /etc/systemd/system/kubelet.service.d
 # Reload daemons.
 systemctl daemon-reload
 
-# Disable bridge-nf-call-iptables.
-rm -f /etc/sysctl.d/90-bridge-nf-call-iptables.conf
-
-# Reload sysctl.
-sysctl --system
-
 # Remove repository.
 rm -f /etc/yum.repos.d/kubernetes.repo
 
