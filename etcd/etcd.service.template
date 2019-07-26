@@ -7,7 +7,7 @@ Requires=docker.service
 SyslogIdentifier=etcd
 ExecStart=/usr/bin/docker run \
   --rm \
-  --net=host \
+  --net host \
   --volume /var/lib/etcd:/var/lib/etcd:Z \
   quay.io/coreos/etcd:VERSION /usr/local/bin/etcd \
   --data-dir /var/lib/etcd \
