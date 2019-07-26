@@ -32,7 +32,7 @@ cp "$SERVICE.template" "$SERVICE"
 
 # Replace variables.
 sed -i.bak "s~VERSION~$VERSION~g" "$SERVICE"
-sed -i.bak "s~HOSTNAME~$HOSTNAME~g" "$SERVICE"
+sed -i.bak "s~HOSTNAME~$(hostname -f)~g" "$SERVICE"
 sed -i.bak "s~CLUSTER~$CLUSTER~g" "$SERVICE"
 sed -i.bak "s~TOKEN~$TOKEN~g" "$SERVICE"
 
