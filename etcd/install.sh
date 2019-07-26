@@ -18,9 +18,9 @@ for node in $NODES
 do
   if [ -z "$CLUSTER" ]
   then
-    CLUSTER="$node=http://$node:2380"
+    CLUSTER="${node%%.*}=http://$node:2380"
   else
-    CLUSTER="$CLUSTER,$node=http://$node:2380"
+    CLUSTER="$CLUSTER,${node%%.*}=http://$node:2380"
   fi
 done
 
@@ -32,7 +32,8 @@ cp "$SERVICE.template" "$SERVICE"
 
 # Replace variables.
 sed -i.bak "s~VERSION~$VERSION~g" "$SERVICE"
-sed -i.bak "s~HOSTNAME~$(hostname -f)~g" "$SERVICE"
+sed -i.bak "s~HOSTNAME~$HOSTNAME~g" "$SERVICE"
+sed -i.bak "s~FQDN~$(hostname -f)~g" "$SERVICE"
 sed -i.bak "s~CLUSTER~$CLUSTER~g" "$SERVICE"
 sed -i.bak "s~TOKEN~$TOKEN~g" "$SERVICE"
 
