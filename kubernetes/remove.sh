@@ -3,12 +3,6 @@
 systemctl stop kubelet
 systemctl disable kubelet
 
-# Remove bash completion.
-rm -f /etc/bash_completion.d/kubectl
-
-# Delete version locks.
-yum versionlock delete kubelet kubeadm kubectl
-
 # Remove packages.
 yum autoremove --assumeyes kubelet kubeadm kubectl
 yum autoremove --assumeyes

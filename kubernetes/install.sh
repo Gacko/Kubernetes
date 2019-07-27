@@ -8,11 +8,5 @@ cp "$(dirname "$0")/kubernetes.repo" /etc/yum.repos.d/kubernetes.repo
 # Install packages.
 yum install --assumeyes "kubelet-$VERSION" "kubeadm-$VERSION" "kubectl-$VERSION"
 
-# Add version locks.
-yum versionlock add "kubelet-$VERSION" "kubeadm-$VERSION" "kubectl-$VERSION"
-
-# Install bash completion.
-kubectl completion bash > /etc/bash_completion.d/kubectl
-
 # Enable service.
 systemctl enable kubelet
