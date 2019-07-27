@@ -17,4 +17,4 @@ then
 fi
 
 # Join cluster.
-kubeadm join --token "$TOKEN" "$APISERVER_FQDN:6443" --discovery-token-ca-cert-hash "$CA_CERT_HASH"
+kubeadm join "$APISERVER_FQDN:6443" --token "$TOKEN" --discovery-token-ca-cert-hash "$CA_CERT_HASH"

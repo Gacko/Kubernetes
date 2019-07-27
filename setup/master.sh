@@ -17,7 +17,7 @@ then
 fi
 
 # Join cluster.
-kubeadm join --token "$TOKEN" "$APISERVER_FQDN:6443" --discovery-token-ca-cert-hash "$CA_CERT_HASH" --experimental-control-plane
+kubeadm join "$APISERVER_FQDN:6443" --token "$TOKEN" --discovery-token-ca-cert-hash "$CA_CERT_HASH" --control-plane
 
 # Copy config.
 $(dirname "$0")/config.sh
