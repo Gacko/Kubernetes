@@ -17,7 +17,6 @@ cp "$INIT.template" "$INIT"
 
 # Replace variables.
 sed -i.bak "s~APISERVER_FQDN~$APISERVER_FQDN~g" "$INIT"
-sed -i.bak "s~TOKEN~$TOKEN~g" "$INIT"
 sed -i.bak "s~POD_CIDR~$POD_CIDR~g" "$INIT"
 sed -i.bak "s~SERVICE_CIDR~$SERVICE_CIDR~g" "$INIT"
 
@@ -44,5 +43,5 @@ kubectl apply -f "$(dirname "$0")/flannel/flannel-rbac.yml"
 kubectl apply -f "$FLANNEL"
 kubectl apply -f "$(dirname "$0")/flannel/flannel-daemonset.yml"
 
-# Remove flannel files.
-rm -f "$FLANNEL" "$FLANNEL.bak"
+# Remove flannel backup.
+rm -f "$FLANNEL.bak"
