@@ -30,7 +30,7 @@ rm -f "$INIT.bak"
 $(dirname "$0")/config.sh
 
 # Define flannel file.
-FLANNEL="$(dirname "$0")/flannel/flannel-configmap.yml"
+FLANNEL="$(dirname "$0")/flannel.yaml"
 
 # Copy flannel template.
 cp "$FLANNEL.template" "$FLANNEL"
@@ -39,9 +39,7 @@ cp "$FLANNEL.template" "$FLANNEL"
 sed -i.bak "s~POD_CIDR~$POD_CIDR~g" "$FLANNEL"
 
 # Apply flannel.
-kubectl apply -f "$(dirname "$0")/flannel/flannel-rbac.yml"
 kubectl apply -f "$FLANNEL"
-kubectl apply -f "$(dirname "$0")/flannel/flannel-daemonset.yml"
 
 # Remove flannel backup.
 rm -f "$FLANNEL.bak"
