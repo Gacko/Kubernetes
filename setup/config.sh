@@ -1,9 +1,6 @@
 #!/bin/bash
 # Create .kube directory.
-mkdir -p "$HOME/.kube"
-
-# Fix permissions.
-chmod 700 "$HOME/.kube"
+mkdir -pm 700 "$HOME/.kube"
 
 # Copy admin.conf to config.
 cp /etc/kubernetes/admin.conf "$HOME/.kube/config"
