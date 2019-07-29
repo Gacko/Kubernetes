@@ -10,7 +10,7 @@ fi
 source "$(dirname "$0")/setup.env"
 
 # Define init file.
-INIT="$(dirname "$0")/init.yml"
+INIT="$(dirname "$0")/init.yaml"
 
 # Copy init template.
 cp "$INIT.template" "$INIT"
