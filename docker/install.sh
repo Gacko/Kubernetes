@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install package.
+# Install packages.
 yum install --assumeyes docker docker-client docker-common
 
 # Remove old drop-ins.

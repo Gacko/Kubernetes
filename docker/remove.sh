@@ -9,7 +9,7 @@ rm -rf /etc/systemd/system/docker.service.d
 # Reload daemons.
 systemctl daemon-reload
 
-# Remove package.
+# Remove packages.
 yum autoremove --assumeyes docker docker-client docker-common
 yum autoremove --assumeyes
 
