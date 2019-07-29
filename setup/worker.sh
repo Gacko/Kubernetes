@@ -9,12 +9,8 @@ fi
 # Source environment.
 source "$(dirname "$0")/setup.env"
 
-# Check for existence of CA certificate hash.
-if [ -z "$CA_CERT_HASH" ]
-then
-  echo "CA certificate hash not found. Configure CA certificate hash in setup.env."
-  exit 1
-fi
+# Set CA certificate hash parameter.
+[ -n "$CA_CERT_HASH" ] && CA_CERT_HASH="--discovery-token-ca-cert-hash $CA_CERT_HASH" || CA_CERT_HASH="--discovery-token-unsafe-skip-ca-verification"
 
 # Join cluster.
-kubeadm join "$APISERVER_FQDN:6443" --token "$TOKEN" --discovery-token-ca-cert-hash "$CA_CERT_HASH"
+kubeadm join "$APISERVER_FQDN:6443" --token "$TOKEN" $CA_CERT_HASH
