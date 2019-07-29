@@ -3,6 +3,12 @@
 systemctl stop kubelet
 systemctl disable kubelet
 
+# Remove drop-ins.
+rm -rf /etc/systemd/system/kubelet.service.d
+
+# Reload daemons.
+systemctl daemon-reload
+
 # Remove packages.
 yum autoremove --assumeyes kubelet kubeadm kubectl
 yum autoremove --assumeyes

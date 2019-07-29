@@ -14,5 +14,14 @@ sysctl --system
 # Install packages.
 yum install --assumeyes "kubelet-$VERSION" "kubeadm-$VERSION" "kubectl-$VERSION"
 
+# Remove old drop-ins.
+rm -rf /etc/systemd/system/kubelet.service.d
+
+# Copy new drop-ins.
+cp -r "$(dirname "$0")/kubelet.service.d" /etc/systemd/system/kubelet.service.d
+
+# Reload daemons.
+systemctl daemon-reload
+
 # Enable service.
 systemctl enable kubelet
