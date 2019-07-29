@@ -9,6 +9,13 @@ fi
 # Source environment.
 source "$(dirname "$0")/setup.env"
 
+# Check for existence of bootstrap token.
+if [ -z "$TOKEN" ]
+then
+  echo "Bootstrap token not found. Configure bootstrap token in setup.env."
+  exit 1
+fi
+
 # Check for existence of CA certificate hash.
 if [ -z "$CA_CERT_HASH" ]
 then
