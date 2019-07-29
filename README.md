@@ -42,18 +42,12 @@ To remove Kubernetes packages, run:
 
 Copy `setup.env.template` to `setup.env` inside of `setup` and configure it according to your needs.
 
-Bootstrap token and CA certificate hash will be generated during master setup.
+CA certificate hash will be generated during master setup.
 
 Initialize your cluster on the first master:
 
 ```
 ./kube.sh setup init master-1
-```
-
-Transfer configuration files from first master to other masters:
-
-```
-./transfer.sh master-1 master-2 ...
 ```
 
 Join other masters:

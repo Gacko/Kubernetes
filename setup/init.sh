@@ -19,9 +19,11 @@ cp "$INIT.template" "$INIT"
 sed -i.bak "s~APISERVER_FQDN~$APISERVER_FQDN~g" "$INIT"
 sed -i.bak "s~POD_CIDR~$POD_CIDR~g" "$INIT"
 sed -i.bak "s~SERVICE_CIDR~$SERVICE_CIDR~g" "$INIT"
+sed -i.bak "s~TOKEN~$TOKEN~g" "$INIT"
+sed -i.bak "s~CERTIFICATE_KEY~$CERTIFICATE_KEY~g" "$INIT"
 
 # Init cluster.
-kubeadm init --config "$INIT"
+kubeadm init --config "$INIT" --upload-certs
 
 # Remove init backup.
 rm -f "$INIT.bak"
