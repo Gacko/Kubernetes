@@ -3,20 +3,20 @@ kind: Namespace
 metadata:
   name: ingress
 ---
-kind: ConfigMap
 apiVersion: v1
+kind: ConfigMap
 metadata:
   name: nginx
   namespace: ingress
 ---
-kind: ConfigMap
 apiVersion: v1
+kind: ConfigMap
 metadata:
   name: tcp-services
   namespace: ingress
 ---
-kind: ConfigMap
 apiVersion: v1
+kind: ConfigMap
 metadata:
   name: udp-services
   namespace: ingress
@@ -155,7 +155,7 @@ metadata:
   name: nginx
   namespace: ingress
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: nginx
@@ -178,7 +178,7 @@ spec:
           - --configmap=$(POD_NAMESPACE)/nginx
           - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
           - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
-          - --publish-service=$(POD_NAMESPACE)/ingress
+          - --publish-service=$(POD_NAMESPACE)/nginx
           - --annotations-prefix=nginx.ingress.kubernetes.io
           securityContext:
             allowPrivilegeEscalation: true
