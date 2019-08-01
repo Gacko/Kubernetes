@@ -1,2 +1,2 @@
 #!/bin/bash
-kubectl delete -f .
+kubectl delete -f "$(dirname "$0")"
