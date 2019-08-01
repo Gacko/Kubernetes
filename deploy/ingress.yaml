@@ -155,7 +155,6 @@ metadata:
   name: nginx
   namespace: ingress
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: nginx
@@ -213,6 +212,7 @@ spec:
               path: /healthz
               port: 10254
             timeoutSeconds: 10
+  replicas: 3
 ---
 apiVersion: v1
 kind: Service
