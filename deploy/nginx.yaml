@@ -18,6 +18,13 @@ spec:
         ports:
         - name: http
           containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "50Mi"
+          limits:
+            cpu: "100m"
+            memory: "50Mi"
   replicas: 3
 ---
 apiVersion: v1
