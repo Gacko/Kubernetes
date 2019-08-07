@@ -45,8 +45,6 @@ kind: Ingress
 metadata:
   name: nginx
   namespace: default
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
   - http:
