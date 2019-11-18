@@ -9,9 +9,15 @@ rm -rf /etc/systemd/system/docker.service.d
 # Reload daemons.
 systemctl daemon-reload
 
+# Remove configuration directory.
+rm -rf /etc/docker
+
 # Remove packages.
-yum autoremove --assumeyes docker docker-client docker-common
+yum autoremove --assumeyes docker-ce
 yum autoremove --assumeyes
 
-# Remove config and data.
-rm -rf /etc/docker /etc/sysconfig/docker* /var/lib/docker/* /var/lib/systemd/timers/stamp-docker-cleanup.timer
+# Remove repository.
+rm -f /etc/yum.repos.d/docker.repo
+
+# Remove data.
+rm -rf /var/lib/docker/*

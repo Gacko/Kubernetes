@@ -1,6 +1,15 @@
 #!/bin/bash
+# Add repository.
+cp "$(dirname "$0")/docker.repo" /etc/yum.repos.d/docker.repo
+
 # Install packages.
-yum install --assumeyes docker docker-client docker-common
+yum install --assumeyes docker-ce-18.06.2.ce
+
+# Create configuration directory.
+mkdir -p /etc/docker
+
+# Copy configuration.
+cp "$(dirname "$0")/daemon.json" /etc/docker/daemon.json
 
 # Remove old drop-ins.
 rm -rf /etc/systemd/system/docker.service.d
