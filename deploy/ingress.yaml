@@ -8,18 +8,27 @@ kind: ConfigMap
 metadata:
   name: nginx
   namespace: ingress
+  labels:
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/part-of: ingress
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: tcp-services
   namespace: ingress
+  labels:
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/part-of: ingress
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: udp-services
   namespace: ingress
+  labels:
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/part-of: ingress
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -154,6 +163,9 @@ kind: Deployment
 metadata:
   name: nginx
   namespace: ingress
+  labels:
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/part-of: ingress
 spec:
   selector:
     matchLabels:
@@ -168,10 +180,14 @@ spec:
         prometheus.io/port: "10254"
         prometheus.io/scrape: "true"
     spec:
+      # wait up to five minutes for the drain of connections
+      terminationGracePeriodSeconds: 300
       serviceAccountName: ingress
+      nodeSelector:
+        kubernetes.io/os: linux
       containers:
         - name: nginx
-          image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.25.0
+          image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.26.1
           args:
           - /nginx-ingress-controller
           - --configmap=$(POD_NAMESPACE)/nginx
@@ -212,6 +228,11 @@ spec:
               path: /healthz
               port: 10254
             timeoutSeconds: 10
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                - /wait-shutdown
   replicas: 3
 ---
 apiVersion: v1
@@ -219,6 +240,9 @@ kind: Service
 metadata:
   name: nginx
   namespace: ingress
+  labels:
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/part-of: ingress
 spec:
   type: NodePort
   ports:
