@@ -221,15 +221,15 @@ spec:
         - name: flannel
           mountPath: /etc/kube-flannel
       volumes:
-        - name: run
-          hostPath:
-            path: /run/flannel
-        - name: cni
-          hostPath:
-            path: /etc/cni/net.d
-        - name: flannel
-          configMap:
-            name: flannel
+      - name: run
+        hostPath:
+          path: /run/flannel
+      - name: cni
+        hostPath:
+          path: /etc/cni/net.d
+      - name: flannel
+        configMap:
+          name: flannel
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -316,15 +316,15 @@ spec:
         - name: flannel
           mountPath: /etc/kube-flannel
       volumes:
-        - name: run
-          hostPath:
-            path: /run/flannel
-        - name: cni
-          hostPath:
-            path: /etc/cni/net.d
-        - name: flannel
-          configMap:
-            name: flannel
+      - name: run
+        hostPath:
+          path: /run/flannel
+      - name: cni
+        hostPath:
+          path: /etc/cni/net.d
+      - name: flannel
+        configMap:
+          name: flannel
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -411,15 +411,15 @@ spec:
         - name: flannel
           mountPath: /etc/kube-flannel
       volumes:
-        - name: run
-          hostPath:
-            path: /run/flannel
-        - name: cni
-          hostPath:
-            path: /etc/cni/net.d
-        - name: flannel
-          configMap:
-            name: flannel
+      - name: run
+        hostPath:
+          path: /run/flannel
+      - name: cni
+        hostPath:
+          path: /etc/cni/net.d
+      - name: flannel
+        configMap:
+          name: flannel
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -506,15 +506,15 @@ spec:
         - name: flannel
           mountPath: /etc/kube-flannel
       volumes:
-        - name: run
-          hostPath:
-            path: /run/flannel
-        - name: cni
-          hostPath:
-            path: /etc/cni/net.d
-        - name: flannel
-          configMap:
-            name: flannel
+      - name: run
+        hostPath:
+          path: /run/flannel
+      - name: cni
+        hostPath:
+          path: /etc/cni/net.d
+      - name: flannel
+        configMap:
+          name: flannel
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -601,12 +601,12 @@ spec:
         - name: flannel
           mountPath: /etc/kube-flannel
       volumes:
-        - name: run
-          hostPath:
-            path: /run/flannel
-        - name: cni
-          hostPath:
-            path: /etc/cni/net.d
-        - name: flannel
-          configMap:
-            name: flannel
+      - name: run
+        hostPath:
+          path: /run/flannel
+      - name: cni
+        hostPath:
+          path: /etc/cni/net.d
+      - name: flannel
+        configMap:
+          name: flannel
