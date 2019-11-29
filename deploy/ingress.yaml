@@ -186,53 +186,53 @@ spec:
       nodeSelector:
         kubernetes.io/os: linux
       containers:
-        - name: nginx
-          image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.26.1
-          args:
-          - /nginx-ingress-controller
-          - --configmap=$(POD_NAMESPACE)/nginx
-          - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
-          - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
-          - --publish-service=$(POD_NAMESPACE)/nginx
-          - --annotations-prefix=nginx.ingress.kubernetes.io
-          securityContext:
-            allowPrivilegeEscalation: true
-            capabilities:
-              drop:
-              - ALL
-              add:
-              - NET_BIND_SERVICE
-            runAsUser: 33 # www-data
-          env:
-          - name: POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: POD_NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-          ports:
-          - name: http
-            containerPort: 80
-          - name: https
-            containerPort: 443
-          livenessProbe:
-            httpGet:
-              path: /healthz
-              port: 10254
-            timeoutSeconds: 10
-            initialDelaySeconds: 10
-          readinessProbe:
-            httpGet:
-              path: /healthz
-              port: 10254
-            timeoutSeconds: 10
-          lifecycle:
-            preStop:
-              exec:
-                command:
-                - /wait-shutdown
+      - name: nginx
+        image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.26.1
+        args:
+        - /nginx-ingress-controller
+        - --configmap=$(POD_NAMESPACE)/nginx
+        - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+        - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
+        - --publish-service=$(POD_NAMESPACE)/nginx
+        - --annotations-prefix=nginx.ingress.kubernetes.io
+        securityContext:
+          allowPrivilegeEscalation: true
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - NET_BIND_SERVICE
+          runAsUser: 33 # www-data
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        ports:
+        - name: http
+          containerPort: 80
+        - name: https
+          containerPort: 443
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 10254
+          timeoutSeconds: 10
+          initialDelaySeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 10254
+          timeoutSeconds: 10
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /wait-shutdown
   replicas: 3
 ---
 apiVersion: v1
