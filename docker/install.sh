@@ -3,7 +3,7 @@
 cp "$(dirname "$0")/docker.repo" /etc/yum.repos.d/docker.repo
 
 # Install packages.
-yum install --assumeyes docker-ce-19.03.4.ce
+yum install --assumeyes docker-ce-19.03.4
 
 # Create configuration directory.
 mkdir -p /etc/docker
