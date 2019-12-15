@@ -13,7 +13,7 @@ systemctl daemon-reload
 rm -rf /etc/docker
 
 # Remove packages.
-yum autoremove --assumeyes docker-ce
+yum autoremove --assumeyes docker-ce docker-ce-cli
 yum autoremove --assumeyes
 
 # Remove repository.
