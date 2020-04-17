@@ -1,6 +1,6 @@
 #!/bin/bash
 # Define version.
-VERSION="19.03.4"
+VERSION="19.03.8"
 
 # Add repository.
 cp "$(dirname "$0")/docker.repo" /etc/yum.repos.d/docker.repo
