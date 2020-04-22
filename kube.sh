@@ -1,7 +1,7 @@
 #!/bin/bash
 # Define stage and task.
-STAGE="$1"
-TASK="$2"
+stage="$1"
+task="$2"
 # Shift arguments.
 shift ; shift
 
@@ -9,9 +9,9 @@ shift ; shift
 for host in $@
 do
   # Remove existing stage files.
-  ssh "$host" "rm -rf $STAGE"
+  ssh "$host" "rm -rf $stage"
   # Transfer new stage files.
-  scp -r "$STAGE" "$host:"
+  scp -r "$stage" "$host:"
   # Execute task.
-  ssh "$host" "$STAGE/$TASK.sh"
+  ssh "$host" "$stage/$task.sh"
 done
