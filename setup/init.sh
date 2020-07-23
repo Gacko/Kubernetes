@@ -16,6 +16,7 @@ INIT="$(dirname "$0")/init.yaml"
 cp "$INIT.template" "$INIT"
 
 # Replace variables.
+sed -i.bak "s~VERSION~$VERSION~g" "$INIT"
 sed -i.bak "s~APISERVER_FQDN~$APISERVER_FQDN~g" "$INIT"
 sed -i.bak "s~POD_CIDR~$POD_CIDR~g" "$INIT"
 sed -i.bak "s~SERVICE_CIDR~$SERVICE_CIDR~g" "$INIT"
