@@ -45,7 +45,7 @@ spec:
   selector:
     app: nginx
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx
@@ -56,5 +56,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: nginx
-          servicePort: http
+          service:
+            name: nginx
+            port:
+              name: http
