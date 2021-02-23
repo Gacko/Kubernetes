@@ -1,6 +1,6 @@
 #!/bin/bash
 # Define version.
-VERSION="1.20.2"
+VERSION="1.20.4"
 
 # Enable bridge-nf-call-iptables.
 cp "$(dirname "$0")/bridge-nf-call-iptables.conf" /etc/sysctl.d/90-bridge-nf-call-iptables.conf
