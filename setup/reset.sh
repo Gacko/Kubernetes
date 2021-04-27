@@ -3,4 +3,4 @@
 kubeadm reset --force
 
 # Remove .kube directory.
-rm -rf "$HOME/.kube"
+rm -rf "${HOME}/.kube"

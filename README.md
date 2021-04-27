@@ -68,20 +68,6 @@ To reset a node, run:
 ./kube.sh setup reset node-1 ...
 ```
 
-## Deploy
-
-Apply example resources to your cluster:
-
-```
-./kube.sh deploy apply master-1
-```
-
-Delete example resources from your cluster:
-
-```
-./kube.sh deploy delete master-1
-```
-
 ## Uninstall
 
 To return to a specific stage execute the steps described above in inverse order using the delete / reset / remove tasks.

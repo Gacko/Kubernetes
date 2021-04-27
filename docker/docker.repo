@@ -1,4 +1,0 @@
-[docker]
-name=Docker
-baseurl=https://download.docker.com/linux/centos/$releasever/$basearch/stable
-gpgkey=https://download.docker.com/linux/centos/gpg
